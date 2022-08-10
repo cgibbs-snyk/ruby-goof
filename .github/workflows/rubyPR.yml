@@ -29,6 +29,7 @@ jobs:
         run: snyk test --json --json-file-output=snykTestResults.json
 
       - name: Snyk gh-commit-status
+        if: success() || failure()
         run: snyk-prevent-gh-commit-status-linux
              ./snykTestResults.json
              ${{ secrets.GITHUB_TOKEN }}
@@ -37,7 +38,6 @@ jobs:
              ${sha1}
              refs/pull/:prNumber/merge
              https://google.com
-             <keepHistory - optional>
 
       - name: Snyk monitor
         run: snyk monitor
