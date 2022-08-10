@@ -30,7 +30,7 @@ jobs:
 
       - name: Snyk gh-commit-status
         if: success() || failure()
-        run: snyk-prevent-gh-commit-status-linux
+        run: snyk-prevent-gh-commit-status
              ./snykTestResults.json
              ${{ secrets.GITHUB_TOKEN }}
              cgibbs-snyk
